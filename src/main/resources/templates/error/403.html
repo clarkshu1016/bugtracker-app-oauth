@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bugtracker.css">
+        <script src="/js/bootstrap.min.js"></script>
+        <title>Bug Tracker v1.0</title>
+    </head>
+
+    <body>
+        <div class='container-fluid'>
+
+            <!-- The header with project name and logout link -->
+            <div class="row bugtracker-header">
+                <div class="col">
+                    <h2>
+                        Bug Tracker
+                    </h2>
+                </div>
+
+            </div>
+
+            <p/>
+
+            <div>
+                You do not have enough privileges to perform this action (403 Error)
+            </div>
+
+            <a th:href="@{/bugtracker/ui}"
+               class="btn btn-primary mt-3 mb-2"
+               role="button">Home</a>
+
+        </div>
+    </body>
+</html>

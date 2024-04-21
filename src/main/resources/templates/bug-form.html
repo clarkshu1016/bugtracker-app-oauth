@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bugtracker.css">
+        <title>Bug Tracker v1.0</title>
+    </head>
+
+    <body>
+
+        <div class='container-fluid'>
+
+            <!-- The header with project name and logout link -->
+            <div class="row bugtracker-header">
+                <div class="col">
+                    <h2>
+                        Bug Tracker
+                    </h2>
+                </div>
+
+                <div class="col d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <a href="/logout" style="color:white">Logout</a>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <img th:src="${user.picture == null} ? '/images/person.svg' : ${user.picture}"
+                             class="rounded-circle" width="35" height="35">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <form th:action="@{/bugtracker/ui/save-bug}" method="post" th:object="${bug}">
+
+                        <div class="row">
+                            <span class="h2 m-3"
+                                  th:text="${bug.id() == null} ? 'Create Bug' : 'Edit Bug ' + ${bug.id()}">
+                            </span>
+                        </div>
+
+                        <div class="row form-group m-3">
+                            <label for="headline"><b>Headline</b></label>
+                            <input type="text" required
+                                   class="form-control"
+                                   th:field="*{headline}"
+                                   id="headline"
+                                   placeholder="Enter Bug Headline">
+                        </div>
+
+                        <div class="row form-group m-3">
+                            <label for="description"><b>Description</b></label>
+                            <textarea  required rows="5"
+                                       class="form-control"
+                                       th:field="*{description}"
+                                       id="description"
+                                       placeholder="Enter Description">
+                            </textarea>
+                        </div>
+
+                        <div class="row form-group m-3">
+                            <label for="project"><b>Project</b></label>
+                            <select  class="form-control" th:field="*{project}"  id="project">
+                                <option value="Unknown">Select Project</option>
+                                <option th:each="project : ${projects}"
+                                        th:value="${project}"
+                                        th:text="${project}">
+                            </select>
+                        </div>
+
+                        <div class="row form-group m-3">
+                            <label for="severity"><b>Severity</b></label>
+                            <select required class="form-control" id="severity" th:field="*{severity}" >
+                              <option value="LOW">LOW</option>
+                              <option value="MINOR">MINOR</option>
+                              <option value="MAJOR">MAJOR</option>
+                              <option value="CRITICAL">CRITICAL</option>
+                            </select>
+                        </div>
+
+                        <div class="row form-group m-3">
+                            <label for="state"><b>State</b></label>
+                            <select required class="form-control" id="state" th:field="*{state}">
+                                <option value="OPEN">OPEN</option>
+                                <option value="CLOSED">CLOSED</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" th:field="*{submitter}">
+                        <input type="hidden" th:field="*{id}">
+                        <button class="btn btn-primary ms-3" type="submit">Save</button>
+                        <a th:href="@{/bugtracker/ui/show-bugs}" class="btn btn-primary" role="button">Cancel</a>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+body {
+	margin: 0px; 
+	padding: 0px;
+}
+
+textarea.token {
+	font-family: "JetBrains Mono Light", consolas;
+	font-size: smaller;
+	background-color: #fcfcfd;
+}
+
+/* Used for header */
+.bugtracker-header {
+	background-color: #0d6efd;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+	background-color: #cfe2ff;
+}
